@@ -1,0 +1,4 @@
+# Temporary Files
+*.blend[1-99]
+*.assbin
+*/*[a-zA-Z]_autosave_[0-99].spp
