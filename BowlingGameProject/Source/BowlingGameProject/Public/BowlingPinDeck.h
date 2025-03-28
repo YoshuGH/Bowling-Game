@@ -3,10 +3,11 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "BowlingPin.h"
 #include "GameFramework/Actor.h"
 #include "BowlingPinDeck.generated.h"
 
-UCLASS()
+UCLASS(Blueprintable)
 class BOWLINGGAMEPROJECT_API ABowlingPinDeck : public AActor
 {
 	GENERATED_BODY()
@@ -16,34 +17,7 @@ public:
 	ABowlingPinDeck();
 
 	UPROPERTY(BlueprintReadWrite, EditDefaultsOnly)
-	UStaticMeshComponent* Pin1;
-
-	UPROPERTY(BlueprintReadWrite, EditDefaultsOnly)
-	UStaticMeshComponent* Pin2;
-
-	UPROPERTY(BlueprintReadWrite, EditDefaultsOnly)
-	UStaticMeshComponent* Pin3;
-
-	UPROPERTY(BlueprintReadWrite, EditDefaultsOnly)
-	UStaticMeshComponent* Pin4;
-
-	UPROPERTY(BlueprintReadWrite, EditDefaultsOnly)
-	UStaticMeshComponent* Pin5;
-
-	UPROPERTY(BlueprintReadWrite, EditDefaultsOnly)
-	UStaticMeshComponent* Pin6;
-
-	UPROPERTY(BlueprintReadWrite, EditDefaultsOnly)
-	UStaticMeshComponent* Pin7;
-
-	UPROPERTY(BlueprintReadWrite, EditDefaultsOnly)
-	UStaticMeshComponent* Pin8;
-
-	UPROPERTY(BlueprintReadWrite, EditDefaultsOnly)
-	UStaticMeshComponent* Pin9;
-
-	UPROPERTY(BlueprintReadWrite, EditDefaultsOnly)
-	UStaticMeshComponent* Pin10;
+	ABowlingPin* Pin1;
 
 protected:
 	// Called when the game starts or when spawned

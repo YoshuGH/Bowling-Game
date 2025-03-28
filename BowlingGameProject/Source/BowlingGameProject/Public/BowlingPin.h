@@ -3,11 +3,12 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Delegates/Delegate.h"
 #include "GameFramework/Actor.h"
 #include "BowlingPin.generated.h"
 
 UDELEGATE()
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnPinFallSignature , AActor*, PinThatFall);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnPinFallSignature);
 
 UCLASS()
 class BOWLINGGAMEPROJECT_API ABowlingPin : public AActor
@@ -18,19 +19,18 @@ public:
 	// Sets default values for this actor's properties
 	ABowlingPin();
 
-	UPROPERTY(BlueprintReadOnly, EditDefaultsOnly)
-	UStaticMeshComponent* PinMesh;
-
 	UPROPERTY(BlueprintAssignable, BlueprintCallable, Category = "Events")
 	FOnPinFallSignature OnPinFall;
 
+	UPROPERTY(BlueprintReadOnly, EditDefaultsOnly)
+	UStaticMeshComponent* PinMesh;
+
 private:
-
+	
+	// Max angle to count as fallen (Relative to the Z axis) 
+	UPROPERTY(EditDefaultsOnly, Category = "Settings")
 	float FallAngleThreshold = 35.0f;
-
-protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
+	bool bisFallen = false;
 
 public:	
 	// Called every frame

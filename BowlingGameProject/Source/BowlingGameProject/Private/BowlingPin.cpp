@@ -14,13 +14,6 @@ ABowlingPin::ABowlingPin()
 	PinMesh->AttachToComponent(RootComponent, FAttachmentTransformRules::KeepRelativeTransform);
 }
 
-// Called when the game starts or when spawned
-void ABowlingPin::BeginPlay()
-{
-	Super::BeginPlay();
-	
-}
-
 // Called every frame
 void ABowlingPin::Tick(float DeltaTime)
 {
@@ -30,10 +23,10 @@ void ABowlingPin::Tick(float DeltaTime)
 	FVector UpVector = Cast<USceneComponent>(PinMesh)->GetUpVector();
 	FRotator PinRotation = UKismetMathLibrary::FindLookAtRotation(WorldLocation, WorldLocation+(UpVector+50));
 
-	if (PinRotation.Pitch < FallAngleThreshold)
+	if (!bisFallen && (PinRotation.Pitch < FallAngleThreshold))
 	{
-		FString ClassName = StaticClass()->GetName();
-		UE_LOG(LogTemp, Warning, TEXT("%s", ClassName));
-		OnPinFall.Broadcast(this);
+		UE_LOG(LogTemp, Warning, TEXT("Fall"));
+		OnPinFall.Broadcast();
+		bisFallen = true;
 	}
 }

@@ -12,9 +12,15 @@ struct BOWLINGGAMEPROJECT_API FRoundData
 
 public:
 
-	UPROPERTY(BlueprintReadWrite, EditDefaultsOnly)
-	TArray<float> Shoots;
+	FRoundData();
+	FRoundData(bool IsValided);
 
-	UPROPERTY(BlueprintReadWrite, EditDefaultsOnly)
-	float RoundScore;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	bool IsValid = false;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	TArray<int> Shoots;
+
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	float RoundScore = -1;
 };
